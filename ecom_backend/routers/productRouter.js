@@ -2,6 +2,7 @@
 const UploadProductController = require("../controllers/UploadProductController");
 const DeleteProductController = require("../controllers/DeleteProductController");
 const UpdateProductController = require("../controllers/updateProductController");
+const  getAllProductsController = require("../controllers/getAllProductsController");
 const { files, validationResult } = require("express-validator");
 
 // const adminAuth = require("../middleware/adminAuth")
@@ -21,9 +22,9 @@ module.exports = (upload) => {
     }
   );
 
-//   ProductRouter.get("/product", customerAuth, async (req, res) => {
-//     GetProductController.Execute(req, res);
-//   });
+  ProductRouter.get("/getallproduct", async (req, res) => {
+    getAllProductsController(req, res); 
+  });
 
  
   ProductRouter.delete("/product/:id", async (req, res) => {
