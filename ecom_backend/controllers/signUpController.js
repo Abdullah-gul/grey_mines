@@ -5,11 +5,10 @@ const saltRounds = 10;
 
 class SignUpController {
   static async Execute(req, res) {
-    const { firstName, lastName, email, phone } = req.body;
+    const { fullname, email, phone } = req.body;
 
     const user = new User({
-      firstName: firstName.trim(),
-      lastName: lastName.trim(),
+      fullname: fullname.trim(),
       email: email.trim().toLowerCase(),
       mobile: phone,
     });

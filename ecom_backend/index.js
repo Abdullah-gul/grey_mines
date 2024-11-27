@@ -8,7 +8,10 @@ const jwt = require("jsonwebtoken");
 const  authRoutes = require("./routers/adminRoutes")
 const  signUpRouter = require("./routers/signUpRouter")
 const  loginRouter = require("./routers/loginRouter")
-
+const forgetPasswordRouter = require("./routers/forgetPasswordRouter")
+const productRouter =require('./routers/productRouter')
+const fileRoute =require('./routers/fileRoute')
+const upload = require("./middlewares/upload");
 
 dotenv.config();
 
@@ -30,9 +33,12 @@ mongoose
   .catch((err) => console.error("MongoDB connection error:", err));
 
   // app.use( authRoutes);
-  app.use( signUpRouter);
-  app.use(loginRouter)
-
+  app.use("/api/", signUpRouter);
+  app.use("/api/",loginRouter)
+  app.use("/api/", productRouter(upload))
+  // app.use("/api/", fileRoute)
+  app.use("/api/",forgetPasswordRouter)
+  
 
   const PORT = process.env.PORT || 5000;
 
